@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Finance - Jornada</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="collection-header">
+        <section class="collection-title" aria-label="Identificação da coleta">
+          <div>
+            <h1>29/09/2026 - Open Finance - PJ / Mobile</h1>
+            <p>SICREDI</p>
+          </div>
+        </section>
+
+        <section class="collection-meta" aria-label="Resumo da coleta">
+          <strong>Coleta finalizada</strong>
+          <h2>12/09/2026, 00:23:14 &middot; duração total 53h 25min 40s</h2>
+          <p>Criada por Alan Luciano Martins Teixeira</p>
+          <p>ID da coleta 6abcd75b... <button class="copy-id" type="button" aria-label="Copiar ID da coleta"></button></p>
+        </section>
+      </header>
+
+      <section class="table-frame" aria-label="Validação da jornada Open Finance">
+        <div class="validation-table" role="table" aria-label="Critérios da jornada">
+          <div class="table-header" role="row">
+            <div class="cell video-cell header-video" role="columnheader" aria-label="Vídeo da jornada">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 10.5V7.8c0-.9-.7-1.6-1.6-1.6H5.6C4.7 6.2 4 6.9 4 7.8v8.4c0 .9.7 1.6 1.6 1.6h7.8c.9 0 1.6-.7 1.6-1.6v-2.7l4 3.1c.4.3 1 .1 1-.5V7.9c0-.6-.6-.8-1-.5l-4 3.1Z" />
+              </svg>
+            </div>
+            <div class="cell macro" role="columnheader">Macro Jornada <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell journey" role="columnheader">Jornada <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell type" role="columnheader">Tipo <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell category" role="columnheader">Categoria <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell criteria" role="columnheader">Critério <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell response" role="columnheader">Resposta</div>
+            <div class="cell status" role="columnheader">Status <span class="filter-icon" aria-hidden="true"></span></div>
+            <div class="cell comment" role="columnheader">Comentário <span class="filter-icon" aria-hidden="true"></span></div>
+          </div>
+
+          <div class="table-body" id="validationRows"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="videoModal" hidden>
+      <div
+        class="video-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="videoModalTitle"
+        aria-describedby="videoModalJourney"
+      >
+        <header class="modal-header">
+          <h2 id="videoModalTitle">Vídeo da jornada</h2>
+          <button class="modal-close" id="closeVideoModal" type="button" aria-label="Fechar modal">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.7 5.3 12 10.6l5.3-5.3 1.4 1.4-5.3 5.3 5.3 5.3-1.4 1.4-5.3-5.3-5.3 5.3-1.4-1.4 5.3-5.3-5.3-5.3 1.4-1.4Z" />
+            </svg>
+          </button>
+        </header>
+
+        <p class="modal-journey" id="videoModalJourney"></p>
+
+        <div class="video-stage">
+          <video id="journeyVideo" controls preload="metadata"></video>
+        </div>
+
+        <p class="video-description" id="videoDescription"></p>
+
+        <footer class="modal-actions">
+          <button class="secondary-button" id="closeVideoModalFooter" type="button">Fechar</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
