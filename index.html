@@ -6,8 +6,30 @@
     <title>Open Finance - Jornada</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <main class="app-shell">
+  <body class="auth-locked">
+    <section class="static-login" id="loginPanel" aria-labelledby="loginTitle">
+      <form class="static-login-card" id="loginForm">
+        <p class="login-eyebrow">Open Finance</p>
+        <h1 id="loginTitle">Acesso à coleta</h1>
+        <p class="login-copy">Informe usuário e senha para visualizar a jornada.</p>
+
+        <p class="login-error" id="loginError" hidden>Usuário ou senha inválidos.</p>
+
+        <label>
+          Usuário
+          <input id="loginUser" type="text" autocomplete="username" required autofocus />
+        </label>
+
+        <label>
+          Senha
+          <input id="loginPassword" type="password" autocomplete="current-password" required />
+        </label>
+
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <main class="app-shell" id="appShell" hidden>
       <header class="collection-header">
         <section class="collection-title" aria-label="Identificação da coleta">
           <div>
@@ -20,7 +42,10 @@
           <strong>Coleta finalizada</strong>
           <h2>12/09/2026, 00:23:14 &middot; duração total 53h 25min 40s</h2>
           <p>Criada por Alan Luciano Martins Teixeira</p>
-          <p>ID da coleta 6abcd75b... <button class="copy-id" type="button" aria-label="Copiar ID da coleta"></button></p>
+          <p>
+            ID da coleta 6abcd75b... <button class="copy-id" type="button" aria-label="Copiar ID da coleta"></button>
+            <a class="logout-link" href="#" id="logoutLink">Sair</a>
+          </p>
         </section>
       </header>
 

@@ -1,3 +1,10 @@
+const authConfig = {
+  username: "admin",
+  passwordHash: "e6a1460e4a86a54ef373e3a6afe636a09ca6e9a5c1fece3aa7ec5f2347fbcce8",
+};
+
+const authStorageKey = "exemplo-vector-authenticated";
+
 const journeyVideos = {
   "pix-imediato-iniciadora-fase-3": {
     url: "Assets/Sicredi PJ - receptora de dados - mobile.mp4",
@@ -104,9 +111,68 @@ const modalJourney = document.getElementById("videoModalJourney");
 const videoDescription = document.getElementById("videoDescription");
 const closeButton = document.getElementById("closeVideoModal");
 const closeFooterButton = document.getElementById("closeVideoModalFooter");
+const appShell = document.getElementById("appShell");
+const loginPanel = document.getElementById("loginPanel");
+const loginForm = document.getElementById("loginForm");
+const loginUser = document.getElementById("loginUser");
+const loginPassword = document.getElementById("loginPassword");
+const loginError = document.getElementById("loginError");
+const logoutLink = document.getElementById("logoutLink");
 
 let selectedVideo = null;
 let openerButton = null;
+
+function setAuthenticated(isAuthenticated) {
+  document.body.classList.toggle("auth-locked", !isAuthenticated);
+  appShell.hidden = !isAuthenticated;
+  loginPanel.hidden = isAuthenticated;
+
+  if (isAuthenticated) {
+    renderRows();
+    return;
+  }
+
+  closeVideoModal();
+  loginPassword.value = "";
+  loginUser.focus();
+}
+
+async function sha256(value) {
+  const bytes = new TextEncoder().encode(value);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", bytes);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function handleLogin(event) {
+  event.preventDefault();
+
+  if (!crypto.subtle) {
+    loginError.textContent = "Este navegador não suporta validação local de senha.";
+    loginError.hidden = false;
+    return;
+  }
+
+  const passwordHash = await sha256(loginPassword.value);
+  const isValid = loginUser.value === authConfig.username && passwordHash === authConfig.passwordHash;
+
+  if (!isValid) {
+    loginError.textContent = "Usuário ou senha inválidos.";
+    loginError.hidden = false;
+    loginPassword.select();
+    return;
+  }
+
+  loginError.hidden = true;
+  sessionStorage.setItem(authStorageKey, "true");
+  setAuthenticated(true);
+}
+
+function handleLogout(event) {
+  event.preventDefault();
+  sessionStorage.removeItem(authStorageKey);
+  setAuthenticated(false);
+}
 
 function renderRows() {
   tableBody.innerHTML = rows.map(renderRow).join("");
@@ -269,4 +335,6 @@ document.addEventListener("keydown", (event) => {
   keepFocusInModal(event);
 });
 
-renderRows();
+loginForm.addEventListener("submit", handleLogin);
+logoutLink.addEventListener("click", handleLogout);
+setAuthenticated(sessionStorage.getItem(authStorageKey) === "true");

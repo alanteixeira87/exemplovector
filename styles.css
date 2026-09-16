@@ -22,8 +22,99 @@ body {
   background: #f3f6f7;
 }
 
+body.auth-locked {
+  background: #f3f6f7;
+}
+
 button {
   font: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.static-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.static-login-card {
+  width: min(100%, 420px);
+  display: grid;
+  gap: 18px;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid #d6e0e2;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.12);
+}
+
+.login-eyebrow {
+  margin: 0 0 -10px;
+  color: var(--teal-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.static-login-card h1 {
+  margin: 0;
+  color: var(--teal-900);
+  font-size: 24px;
+}
+
+.login-copy {
+  margin: -8px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.login-error {
+  margin: 0;
+  padding: 10px 12px;
+  color: #8a1f11;
+  background: #fff1ee;
+  border: 1px solid #f0c7be;
+  font-size: 14px;
+}
+
+.static-login-card label {
+  display: grid;
+  gap: 8px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.static-login-card input {
+  height: 42px;
+  padding: 8px 10px;
+  border: 1px solid #9fb5b9;
+  border-radius: 4px;
+  color: var(--text);
+  font: inherit;
+}
+
+.static-login-card input:focus {
+  outline: 3px solid rgba(0, 121, 133, 0.24);
+  border-color: var(--teal-800);
+}
+
+.static-login-card button {
+  height: 40px;
+  border: 1px solid var(--teal-800);
+  border-radius: 4px;
+  background: var(--teal-800);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.static-login-card button:hover {
+  background: var(--teal-900);
 }
 
 .app-shell {
@@ -96,6 +187,20 @@ button {
   border: 1px solid #6a6a6a;
   background: transparent;
   vertical-align: -2px;
+}
+
+.logout-link {
+  display: inline-block;
+  margin-left: 14px;
+  color: var(--teal-900);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.logout-link:hover,
+.logout-link:focus-visible {
+  text-decoration: underline;
 }
 
 .table-frame {
